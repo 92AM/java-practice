@@ -1,5 +1,7 @@
 package com.am92;
 
+import java.util.stream.IntStream;
+
 /**
  * Write a program that takes as input an integer size and outputs big ASCII "X" on the console * with size rows and columns.
  *
@@ -35,7 +37,8 @@ public class BigX {
 
     public static void main(String[] args) {
 
-        drawExpoX(5);
+        IntStream.range(0, 10).forEach( size -> System.out.println("Size : " + size + "\n" + drawExpoX(size)));
+
     }
 
     /**
@@ -45,7 +48,9 @@ public class BigX {
      *
      * @param size int
      */
-    private static void drawExpoX(int size) {
+    private static String drawExpoX(int size) {
+
+        StringBuilder result = new StringBuilder();
 
         /*  Imagine rendering the X on a square 2 X 2 grid, this loop iterates
         through the rows of the grid (top -> bottom)  */
@@ -61,12 +66,14 @@ public class BigX {
             for (int k = 0; k < size; k++) {
 
                 // Check for the intersections and print accordingly, if intersection is found print '*', else '  '
-                System.out.print((k == i || k == j) ? "*" : "  ");
+                result.append((k == i || k == j) ? "*" : " ");
             }
 
             // print a new blank line after printing a row
-            System.out.println();
+            result.append("\n");
         }
+
+        return result.toString();
     }
 
 }
